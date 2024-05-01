@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "400515778819",
+    "project_id": "culinar-8e9a2",
+    "storage_bucket": "culinar-8e9a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400515778819:android:603b03a307fd7770908136",
+        "android_client_info": {
+          "package_name": "com.example.culinar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAozftv9EHKgS_jtCHuE1YFS0H5aBofAss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
