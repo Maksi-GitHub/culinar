@@ -6,12 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class App extends StatelessWidget {
   final UserRepository userRepository;
-  const App( this.userRepository,{super.key});
+  const App(this.userRepository, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<AuthBloc>(
-      create: (context) => AuthBloc(userRepository: userRepository),
-      child: const AppView());
+      create: (context) => AuthBloc(
+				userRepository: userRepository
+			),
+      child: const AppView(),
+    );
   }
-} 
+}

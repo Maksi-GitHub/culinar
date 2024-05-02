@@ -15,16 +15,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       : super(const AuthState.initial()) {
     on<AppStarted>((event, emit) async {
       final currentUser = await userRepository.getCurrentUser();
-      if (currentUser != null) {
-        emit(AuthAuthenticated(currentUser));
-      } else {
-        emit(const _Unauthenticated());
-      } 
-    });
+    if (currentUser != null) {
+      emit(AuthAuthenticated(currentUser));
+    } else {
+      emit(const AuthUnauthenticated());
+    }
+  });
 
     on<UserSignedOut>((event, emit) {
-      userRepository.signOut();
-      emit(const _Unauthenticated());
+    userRepository.signOut();
+    emit(const AuthUnauthenticated());
     });
   }
 }

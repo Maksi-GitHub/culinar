@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAozftv9EHKgS_jtCHuE1YFS0H5aBofAss',
-    appId: '1:400515778819:android:603b03a307fd7770908136',
-    messagingSenderId: '400515778819',
-    projectId: 'culinar-8e9a2',
-    storageBucket: 'culinar-8e9a2.appspot.com',
+    apiKey: 'AIzaSyA2OmyxulyZXK41sq-s8bLsAj1yChMJTvA',
+    appId: '1:575476655303:android:4c41d2db9ffd1ee5994ae2',
+    messagingSenderId: '575476655303',
+    projectId: 'culinar-c4bc8',
+    storageBucket: 'culinar-c4bc8.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCTKUUCZEd0En31MbRp0bsXLHCOQAOI_yE',
-    appId: '1:400515778819:ios:944f13520d51321e908136',
-    messagingSenderId: '400515778819',
-    projectId: 'culinar-8e9a2',
-    storageBucket: 'culinar-8e9a2.appspot.com',
+    apiKey: 'AIzaSyDnEKgNn7aMbfisYY4x92GECuX5AK1sFpU',
+    appId: '1:575476655303:ios:2480fdd7c8268005994ae2',
+    messagingSenderId: '575476655303',
+    projectId: 'culinar-c4bc8',
+    storageBucket: 'culinar-c4bc8.appspot.com',
     iosBundleId: 'com.example.culinar',
   );
+
 }

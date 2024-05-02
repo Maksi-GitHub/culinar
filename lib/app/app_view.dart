@@ -5,38 +5,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppView extends StatelessWidget {
-
   const AppView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
+    final authBloc = BlocProvider.of<AuthBloc>(context);
+    authBloc.add(const AppStarted());
+
     return MaterialApp(
-        debugShowCheckedModeBanner: false, 
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Colors.red,
-            selectionColor: Colors.yellow,
-            selectionHandleColor: Colors.black,
-          ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Colors.red,
+          selectionColor: Colors.yellow,
+          selectionHandleColor: Colors.black,
         ),
-        home: BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            if (state is AuthAuthenticated) {
-              return BlocProvider(
-                create: (context) => SignInBloc(
-                    userRepository: context.read<AuthBloc>().userRepository),
-                  child: const HomeScreen(),
-              );
-            } else {
-              return const SignInScreen();
-              
-            }
-          },
-        ),
+      ),
+      home: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          if (state is AuthAuthenticated) {
+            return const HomeScreen();
+          } else {
+            return BlocProvider(
+              create: (context) => SignInBloc(
+                  userRepository: context.read<AuthBloc>().userRepository),
+              child: const SignInScreen(),
+            );
+          }
+        },
+      ),
     );
   }
 }
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

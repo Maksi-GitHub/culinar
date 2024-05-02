@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
 class MyTextFromField extends StatelessWidget {
-  const MyTextFromField({super.key, required TextEditingController controller});
+  final TextEditingController controller;
 
-@override
-Widget build(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20),
-    child: TextFormField(
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(14)),
+  const MyTextFromField({
+    required this.controller,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
+        controller: controller,
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(14)),
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

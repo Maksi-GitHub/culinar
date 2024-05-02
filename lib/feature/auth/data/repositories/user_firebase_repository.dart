@@ -18,7 +18,7 @@ class UserFirebaseRepository implements UserRepository {
         return null;
       }
     } catch (e) {
-      print("Error getting current user: $e");
+      print("Ошибка при получении текущего пользователя: $e");
       return null;
     }
   }
@@ -80,19 +80,23 @@ class UserFirebaseRepository implements UserRepository {
     }
   }
 
-  @override
-  Future<MyUser?> signInWithEmailAndPassword(String email, String password) async {
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return MyUser(userId: userCredential.user!.uid, email: email, name: '');
-    } catch (e) {
-      print("Ошибка при входе в систему: $e");
-      return null;
-    }
+@override
+Future<MyUser?> signInWithEmailAndPassword(String email, String password) async {
+  try {
+    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return MyUser(userId: userCredential.user!.uid, email: email, name: 'user');
+  } on FirebaseAuthException catch (e) {
+    print("Ошибка при входе в систему: ${e.code} - ${e.message}");
+    return null;
+  } catch (e) {
+    print("Неизвестная ошибка при входе в систему: $e");
+    return null;
   }
+}
+
 
   @override
   Future<MyUser?> signUpWithEmailAndPassword(

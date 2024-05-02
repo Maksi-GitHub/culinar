@@ -1,3 +1,4 @@
+import 'package:culinar/app/app_view.dart';
 import 'package:culinar/feature/auth/UI/components/my_text_filled.dart';
 import 'package:culinar/feature/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,6 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool signInRequired = false;
-
   @override
   void dispose() {
     _emailController.dispose();
@@ -24,22 +23,13 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
   }
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return BlocListener<SignInBloc, SignInState>(
         listener: (context, state) {
           if (state is SignInSuccess) {
-            setState(() {
-              signInRequired = false;
-            });
-          } else if (state is SignInLoading) {
-            setState(() {
-              signInRequired = true;
-            });
-          } else if (state is SignInFailure) {
-            setState(() {
-              signInRequired = false;
-            });
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const AppView()));
           }
         },
         child: Scaffold(
@@ -66,13 +56,14 @@ class _SignInScreenState extends State<SignInScreen> {
                 MyTextFromField(
                   controller: _passwordController,
                 ),
+                const SizedBox(height: 25),
                 ElevatedButton(
                     onPressed: () {
                       context.read<SignInBloc>().add(SignInRequested(
                           email: _emailController.text,
                           password: _passwordController.text));
                     },
-                    child: Text('Войти')),
+                    child: const Text('Войти')),
               ],
             ),
           ),
