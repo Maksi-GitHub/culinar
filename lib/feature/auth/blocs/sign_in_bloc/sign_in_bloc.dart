@@ -22,7 +22,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         if (user != null) {
           emit(SignInSuccess(user));
         } else {
-          emit(const SignInFailure("Ошибка при входе в систему"));
+          emit(const SignInFailure("Неправильно введен email или пароль"));
         }
       } catch (e) {
         emit(SignInFailure("Ошибка при входе в систему:$e"));

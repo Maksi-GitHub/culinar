@@ -48,13 +48,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome, you are In !'),
         actions: [
           IconButton(
               onPressed: () {
                 context.read<AuthBloc>().add(const UserSignedOut());
               },
-              icon: Icon(Icons.login))
+              icon: const Icon(Icons.login))
         ],
       ),
     );
