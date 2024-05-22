@@ -12,6 +12,5 @@ class MyUser with _$MyUser {
     String? photoProfil,
   }) = _MyUser;
 
-
   factory MyUser.fromJson(Map<String, dynamic> json) => _$MyUserFromJson(json);
 }

@@ -1,5 +1,6 @@
 import 'package:culinar/feature/auth/UI/screens/sign_in_screen.dart';
 import 'package:culinar/feature/auth/bloc/auth_bloc/auth_bloc.dart';
+import 'package:culinar/feature/recipe/UI/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +30,13 @@ class AppView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(14))),
           ),
           textTheme: TextTheme(
+
+            labelLarge: GoogleFonts.dosis(
+                  textStyle: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              )),
               titleLarge: GoogleFonts.dosis(
                   textStyle: const TextStyle(
                 color: Color(0xFF308B85),
@@ -38,7 +46,7 @@ class AppView extends StatelessWidget {
               titleMedium: GoogleFonts.dosis(
                   textStyle: const TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 20, 
                 fontWeight: FontWeight.w900,
               )),
               labelSmall: GoogleFonts.bitter(textStyle: const TextStyle(
@@ -47,7 +55,6 @@ class AppView extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               )),
               labelMedium: GoogleFonts.bitter(textStyle: const TextStyle(
-                color: Colors.black,
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               )),
@@ -65,25 +72,6 @@ class AppView extends StatelessWidget {
             );
           }
         },
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                context.read<AuthBloc>().add(const UserSignedOut());
-              },
-              icon: const Icon(Icons.login))
-        ],
       ),
     );
   }

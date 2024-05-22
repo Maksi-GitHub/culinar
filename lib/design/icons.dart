@@ -8,3 +8,5 @@ final userIcon = SvgPicture.asset('assets/user.svg', fit: BoxFit.scaleDown);
 final eyeIcon = SvgPicture.asset('assets/eye.svg',);
 
 final eyeSlashIcon = SvgPicture.asset('assets/eye_slash.svg',);
+final backIcon = SvgPicture.asset('assets/arrow_left.svg', fit: BoxFit.scaleDown,);
+final imageIcon = SvgPicture.asset('assets/image.svg', fit: BoxFit.scaleDown);

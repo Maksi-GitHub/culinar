@@ -23,15 +23,6 @@ class AuthFirebaseRepository implements AuthRepository {
     }
   }
 
-  @override
-  Future<void> createUser(MyUser user) async {
-    try {
-      await _firestore.collection('users').doc(user.userId).set(user.toJson());
-    } catch (e) {
-      print("Ошибка при создании пользователя: $e");
-    }
-  }
-
   // @override
   // Future<void> updateUser(MyUser user) async {
   //   try {
@@ -41,14 +32,14 @@ class AuthFirebaseRepository implements AuthRepository {
   //   }
   // }
 
-  @override
-  Future<void> deleteUser(String userId) async {
-    try {
-      await _firestore.collection('users').doc(userId).delete();
-    } catch (e) {
-      print("Ошибка при удалении пользователя: $e");
-    }
-  }
+  // @override
+  // Future<void> deleteUser(String userId) async {
+  //   try {
+  //     await _firestore.collection('users').doc(userId).delete();
+  //   } catch (e) {
+  //     print("Ошибка при удалении пользователя: $e");
+  //   }
+  // }
 
   @override
   Future<MyUser?> signInWithEmailAndPassword(
@@ -91,6 +82,15 @@ class AuthFirebaseRepository implements AuthRepository {
     } catch (e) {
       print("Ошибка при регистрации: $e");
       return null;
+    }
+  }
+
+    @override
+  Future<void> createUser(MyUser user) async {
+    try {
+      await _firestore.collection('users').doc(user.userId).set(user.toJson());
+    } catch (e) {
+      print("Ошибка при создании пользователя: $e");
     }
   }
 

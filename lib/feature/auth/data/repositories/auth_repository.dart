@@ -4,11 +4,11 @@ abstract class AuthRepository {
 
   Future<MyUser?> getCurrentUser();
 
-  Future<void> createUser(MyUser user);
+   Future<void> createUser(MyUser user);
 
   // Future<void> updateUser(MyUser user);
 
-  Future<void> deleteUser(String userId);
+  // Future<void> deleteUser(String userId);
 
   Future<MyUser?> signInWithEmailAndPassword(String email, String password);
 

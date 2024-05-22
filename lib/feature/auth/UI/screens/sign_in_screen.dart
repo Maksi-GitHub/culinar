@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:culinar/app/app_view.dart';
 import 'package:culinar/design/icons.dart';
 import 'package:culinar/feature/auth/UI/screens/sign_up_screen.dart';
@@ -31,10 +33,14 @@ class _SignInScreenState extends State<SignInScreen> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is Success) {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const AppView()));
+          _closeLoadingDialog(); // Закрытие диалогового окна загрузки
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const AppView()),
+          );
         }
         if (state is Failure) {
+          _closeLoadingDialog(); // Закрытие диалогового окна загрузки
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
@@ -43,25 +49,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 backgroundColor: Colors.red,
               ),
             );
-            Navigator.of(context).pop();
         }
-         if (state is Loading) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const AlertDialog(
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircularProgressIndicator(),
-                SizedBox(height: 16),
-                Text('Loading...'),
-              ],
-            ),
-          );
-        },
-      );
-    }
+        if (state is Loading) {
+          _showLoadingDialog(context); // Показ диалогового окна загрузки
+        }
       },
       child: Scaffold(
         body: SingleChildScrollView(
@@ -134,7 +125,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('У вас нет аккаунта?',
-                        style: Theme.of(context).textTheme.labelMedium),
+                        style: Theme.of(context).textTheme.labelMedium ),
                     const SizedBox(
                       width: 5,
                     ),
@@ -162,5 +153,39 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
+  }
+
+//TODO: перенести код ниже
+  late Completer<void> _dialogCompleter;
+
+  void _showLoadingDialog(BuildContext context) {
+    _dialogCompleter = Completer<void>();
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Запретить закрытие диалога нажатием вне его
+      builder: (BuildContext context) {
+        return const AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(color: Color(0xFF308B85)),
+              SizedBox(height: 16),
+              Text('Loading...'),
+            ],
+          ),
+        );
+      },
+    ).then((_) {
+      if (!_dialogCompleter.isCompleted) {
+        _dialogCompleter.complete();
+      }
+    });
+  }
+
+  void _closeLoadingDialog() {
+    if (_dialogCompleter != null && !_dialogCompleter.isCompleted) {
+      _dialogCompleter.complete();
+      Navigator.pop(context); // Закрытие диалога
+    }
   }
 }
