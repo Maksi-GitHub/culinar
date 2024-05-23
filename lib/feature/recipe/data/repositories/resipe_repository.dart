@@ -4,12 +4,14 @@ abstract class RecipeRepository {
  
   // Future<List<Recipe>> getRecipes(); // Получить список всех рецептов
   // Future<Recipe> getRecipeById(String recipeId); // Получить рецепт по его идентификатору
+   // Future<List<Recipe>> getRecipesByCategory(String category); // Получить список рецептов определенной категории
+
   Future<void> addRecipe(Recipe recipe); // Добавить новый рецепт
   // Future<void> updateRecipe(Recipe recipe); // Обновить существующий рецепт
+  
   // Future<void> deleteRecipe(String recipeId); // Удалить рецепт
 
   // Future<List<Recipe>> searchRecipes(String query); // Поиск рецептов по запросу
-  // Future<List<Recipe>> getRecipesByCategory(String category); // Получить список рецептов определенной категории
 
   // Future<void> addComment(String recipeId, Comment comment); // Добавить комментарий к рецепту
   // Future<List<Comment>> getCommentsForRecipe(String recipeId); // Получить все комментарии для конкретного рецепта
